@@ -12,7 +12,6 @@ class Employee{
         return this.name;
     }
 
-
     getId(){
         return this.id;
     }
