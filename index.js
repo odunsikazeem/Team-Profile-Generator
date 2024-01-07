@@ -1,4 +1,4 @@
-const Manager = require("./starter/lib/Manager.js");
+const Manager = require("./starter/lib/Employee.js");
 const Engineer = require("./starter/lib/Engineer.js");
 const Intern = require("./starter/lib/Intern.js");
 const inquirer = require("inquirer");
@@ -51,7 +51,7 @@ const memberOption = () =>{
   return inquirer.prompt([
   {
       type: "list",
-      name: "Member",
+      name: "member",
       message:  "Team member you would like to add?",
       choices: [
           "Engineer",
@@ -60,7 +60,7 @@ const memberOption = () =>{
       ]
   }
   ]).then(userInput => {
-      switch (userInput.memberOption) {
+      switch (userInput.member) {
           //switch statement
           case "Engineer":
               engineerQuestions();
@@ -102,7 +102,7 @@ const engineerQuestions = () =>{
 
 ]).then(value =>{
   const engineer = new Engineer(value.name, value.id, value.email, value.github);
-  teammates.push(engineer);
+  teamMembers.push(engineer);
   memberOption();
 });
 }
@@ -131,21 +131,20 @@ const internQuestions = () => {
     message: "Kindly input intern's school?",
   },
 
-]).then(value =>{
+]).then(value => {
   const intern = new Intern (value.name, value.id, value.email, value.school);
-  teammates.push(school);
+  teamMembers.push(intern);
   memberOption();
 });
 };
 
 
 // function for building the html file
-const buildHtml = () => {
+const buildHtml = (teamMembers) => {
   console.log("Your Team is Created!")
 
   fs.writeFileSync(outputPath, render(teamMembers), "UTF-8")
-
-}
+};
 
 
 //INIT FUNCTION
