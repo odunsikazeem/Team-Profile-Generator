@@ -1,4 +1,5 @@
-const Manager = require("./starter/lib/Employee.js");
+const Employee = require("./starter/lib/Employee.js");
+const Manager = require("./starter/lib/Manager.js");
 const Engineer = require("./starter/lib/Engineer.js");
 const Intern = require("./starter/lib/Intern.js");
 const inquirer = require("inquirer");
@@ -7,7 +8,6 @@ const fs = require("fs");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
-
 const render = require("./starter/src/page-template.js");
 
 
@@ -140,7 +140,7 @@ const internQuestions = () => {
 
 
 // function for building the html file
-const buildHtml = (teamMembers) => {
+const buildHtml = () => {
   console.log("Your Team is Created!")
 
   fs.writeFileSync(outputPath, render(teamMembers), "UTF-8")
